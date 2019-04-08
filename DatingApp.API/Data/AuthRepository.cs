@@ -36,7 +36,7 @@ namespace DatingApp.API.Data
             return true;
         }
 
-        public async Task<User> Register(User user, string password)
+        public async Task<User> RegisterAsync(User user, string password)
         {
             byte[] passwordHash,passwordSalt;
             CreatePasswordHash(password,out passwordHash,out passwordSalt);
@@ -65,11 +65,6 @@ namespace DatingApp.API.Data
             if(await _context.Users.AnyAsync(x=>x.UserName==username))
                 return true;
             return false;
-        }
-
-        public Task<User> RegisterAsync(User user, string password)
-        {
-            throw new NotImplementedException();
         }
     }
 }
