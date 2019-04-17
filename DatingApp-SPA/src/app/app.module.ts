@@ -10,6 +10,7 @@ import { from } from 'rxjs';
 import { HomeComponent } from './Home/Home.component';
 import { RegisterComponent } from './register/register.component';
 import {ErrorInterceptorProvider} from './_services/error.interceptor';
+import { AlertifyService } from './_services/alertify.service';
 
 @NgModule({
    declarations: [
@@ -25,7 +26,8 @@ import {ErrorInterceptorProvider} from './_services/error.interceptor';
       FormsModule
    ],
    providers: [
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      AlertifyService
    ],
    bootstrap: [
       AppComponent
