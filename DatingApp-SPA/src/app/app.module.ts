@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { from } from 'rxjs';
 import { HomeComponent } from './Home/Home.component';
+import {BsDropdownModule} from 'ngx-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import {ErrorInterceptorProvider} from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
@@ -23,7 +24,8 @@ import { AlertifyService } from './_services/alertify.service';
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
-      FormsModule
+      FormsModule,
+      BsDropdownModule.forRoot()
    ],
    providers: [
       ErrorInterceptorProvider,
