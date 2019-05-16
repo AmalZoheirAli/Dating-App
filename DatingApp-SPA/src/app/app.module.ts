@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { from } from 'rxjs';
 import { HomeComponent } from './Home/Home.component';
-import {BsDropdownModule} from 'ngx-bootstrap';
+import {BsDropdownModule, TabsModule} from 'ngx-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import {ErrorInterceptorProvider} from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
@@ -20,7 +22,12 @@ import { appRoutes } from './routes';
 import { AuthGuard } from './_gaurds/auth.guard';
 import { UserService } from './_services/User.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
-
+import { MemberDetialsComponent } from './members/member-detials/member-detials.component';
+import {MemberDetialResolver} from './_resolver/MemberDetialsResolver';
+import { MemberListResolver } from './_resolver/MemberListResolver';
+export function tokenGetter(){
+  return localStorage.getItem('token');
+}
 @NgModule({
    declarations: [
       AppComponent,
@@ -30,7 +37,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
       ListsComponent,
       MemberListComponent,
       MessagesComponent,
-      MemberCardComponent
+      MemberCardComponent,
+      MemberDetialsComponent
    ],
    imports: [
       BrowserModule,
@@ -38,13 +46,24 @@ import { MemberCardComponent } from './members/member-card/member-card.component
       HttpClientModule,
       FormsModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      TabsModule.forRoot(),
+      NgxGalleryModule,
+      RouterModule.forRoot(appRoutes),
+      JwtModule.forRoot({
+        config:{
+          tokenGetter: tokenGetter,
+          whitelistedDomains: ['localhost:5000'],
+          blacklistedRoutes: ['localhosst:5000/api/auth']
+        }
+     })
    ],
    providers: [
       ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
-      UserService
+      UserService,
+      MemberDetialResolver,
+      MemberListResolver
    ],
    bootstrap: [
       AppComponent

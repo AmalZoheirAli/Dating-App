@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/_models/User';
 import { Photo } from 'src/app/_models/Photo';
+import { UserService } from 'src/app/_services/User.service';
 
 
 @Component({

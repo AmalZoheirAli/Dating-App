@@ -1,0 +1,58 @@
+<div class="container mt-4">
+<div class="col-sm-4">
+  <h1>{{user.userName}}'s profile</h1>
+</div>
+ <div class="row">
+    <div class="col-sm-4">
+    <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{user.photoURL}}">
+        <div class="card-body">
+        <div>
+          <strong>Location:</strong>
+          <p>{{user.city}},{{user.country}}</p>
+        </div>
+        <div>
+          <strong>Age:</strong>
+          <p>{{user.age}}</p>
+        </div>
+        <div>
+          <strong>Last Active:</strong>
+          <p>{{user.lastActive}}</p>
+        </div>
+        <div>
+          <strong>Member scince:</strong>
+          <p>{{user.created}}</p>
+        </div>
+        </div>
+         <div class="card-footer">
+           <div class="btn-gropup d-flex">
+           <button class="btn btn-primary w-100">Like</button>
+           <button class="btn btn-success w-100">Message</button>
+           </div>
+         </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+    <div class="tab-panel">
+        <tabset class="member-tabset">
+        <tab heading="About {{user.userName}}" >
+        <h4>Description</h4>
+        <p>{{user.introduction}}</p>
+        <h4>Looking for</h4>
+        <p>{{user.lookingFor}}</p>
+        </tab>
+        <tab heading="Interestes" >
+        <h4>Interestes</h4>
+        <p>{{user.interestes}}</p>
+        </tab>
+        <tab heading="photo" >
+        <ngx-gallery [options]="galleryOptions" [images]="gallaryImages"></ngx-gallery>
+        </tab>
+         <tab heading="messages" >
+        <p>messages will go here</p>
+        </tab>
+        </tabset>
+    </div>
+    </div>
+ </div>
+</div>
