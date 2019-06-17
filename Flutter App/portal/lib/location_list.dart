@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portal/styles.dart';
 
 import 'Models/location.dart';
+import 'location_detial.dart';
 
 class LocationList extends StatelessWidget{
   
@@ -22,7 +23,45 @@ class LocationList extends StatelessWidget{
         backgroundColor: Styles.defualtColor,
       ),
       backgroundColor: Styles.defualtColor,
-      body:null
+      body:ListView.builder(
+        itemCount: this.locations.length,
+        itemBuilder: _listViewItemBuilder,
+      )
     ); 
+  }
+  void _navigationToLocationDetials(BuildContext context,Location location){
+     Navigator.push(context,MaterialPageRoute(
+                builder: (context)=>LocalDetials(location:location),
+      )
+     );
+  }
+  Widget _listViewItemBuilder(BuildContext context,int index){
+    var location=this.locations[index];
+     return ListTile(
+            contentPadding: EdgeInsets.all(5.0),
+            leading: _itemThumbnail(location),
+            title: _itemTitle(location),
+            onTap: (){
+               _navigationToLocationDetials(context,location);
+            },
+          ); 
+  }
+  Widget _itemThumbnail(Location location) {
+    var assetsImage = new AssetImage(location.url);
+    var image = new Image(image: assetsImage,fit: BoxFit.fitWidth);
+    return Container(
+      constraints:BoxConstraints.tightFor(width: 100),
+      child:image,
+    );
+  }
+
+  Widget _itemTitle(Location location) {
+      return Container(
+        padding: EdgeInsets.fromLTRB(5.0, 5.0,5.0, 5.0),
+        child: Text(location.facts[0].title,
+         textAlign: TextAlign.right,
+         style:Styles.defualtText
+        )
+      );
   }
 }

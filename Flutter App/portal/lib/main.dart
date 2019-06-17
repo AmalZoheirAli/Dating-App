@@ -8,8 +8,9 @@ import 'mocks/mock_loaction.dart';
 
 void main() { 
  // final Location mockLocation=MockLocation.fetchAny();
+ final List<Location> mockLocationList=MockLocation.fetchAll();
   return runApp(MaterialApp( 
    // home: LocalDetials(location:mockLocation),
-    home: LocationList(locations:[])
+    home: LocationList(locations:mockLocationList)
   ));
 }
