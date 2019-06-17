@@ -40,7 +40,8 @@ class LocationList extends StatelessWidget{
      return ListTile(
             contentPadding: EdgeInsets.all(5.0),
             leading: _itemThumbnail(location),
-            title: _itemTitle(location),
+            title: _itemTitle(location.facts[0].title),
+            subtitle:  _itemTitle(location.facts[0].text),
             onTap: (){
                _navigationToLocationDetials(context,location);
             },
@@ -55,10 +56,10 @@ class LocationList extends StatelessWidget{
     );
   }
 
-  Widget _itemTitle(Location location) {
+  Widget _itemTitle(String text) {
       return Container(
         padding: EdgeInsets.fromLTRB(5.0, 5.0,5.0, 5.0),
-        child: Text(location.facts[0].title,
+        child: Text(text,
          textAlign: TextAlign.right,
          style:Styles.defualtText
         )
